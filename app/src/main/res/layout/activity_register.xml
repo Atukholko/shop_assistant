@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".authorization.fragments.RegisterPage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="cursive"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="80sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="Для регистрации заполните все поля"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/emailFieldRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="28dp"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            android:text=""
+            android:textSize="16sp"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/purple_200"
+            app:met_singleLineEllipsis="true"
+            app:met_textColor="@color/black"
+            app:met_textColorHint="@color/black" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/passwordFieldRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:text=""
+            android:textSize="16sp"
+            app:met_primaryColor="@color/purple_200"
+            app:met_singleLineEllipsis="true"
+            app:met_textColor="@color/black"
+            app:met_textColorHint="@color/black" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/nameFieldRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:hint="Имя"
+            android:inputType="text"
+            android:text=""
+            android:textSize="16sp"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/purple_200"
+            app:met_singleLineEllipsis="true"
+            app:met_textColor="@color/black"
+            app:met_textColorHint="@color/black" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/secondNameFieldRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:hint="Фамилия"
+            android:inputType="text"
+            android:text=""
+            android:textSize="16sp"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/purple_200"
+            app:met_singleLineEllipsis="true"
+            app:met_textColor="@color/black"
+            app:met_textColorHint="@color/black" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/auth_button"
+        android:fontFamily="serif-monospace"
+        android:text="register"
+        android:textColor="@color/black" />
+
+</RelativeLayout>
