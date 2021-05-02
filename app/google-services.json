@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "662533032871",
+    "project_id": "assistant-f36e8",
+    "storage_bucket": "assistant-f36e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662533032871:android:d60072997116f2c8bfc482",
+        "android_client_info": {
+          "package_name": "com.tukholko.assistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662533032871-187atvvoi9474q7kjc5jt0mjq2gktrsu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNr1Mq4bUbGANAiJOvFh9OAFXp3m2Y87A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662533032871-187atvvoi9474q7kjc5jt0mjq2gktrsu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

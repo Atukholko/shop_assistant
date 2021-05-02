@@ -9,11 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Assistant">
-        <activity android:name=".app.AppActivity">
+        <activity android:name=".auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".app.AppActivity"
+            android:theme="@style/Theme.Assistant">
+            <intent-filter>
+                <action android:name="package.OtherActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".auth.RegisterActivity"
+            android:theme="@style/Theme.Assistant">
+            <intent-filter>
+                <action android:name="package.OtherActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>
