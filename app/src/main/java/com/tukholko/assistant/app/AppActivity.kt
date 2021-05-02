@@ -1,28 +1,29 @@
 package com.tukholko.assistant.app
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.tukholko.assistant.R
-import com.tukholko.assistant.app.fragments.Central
 import com.tukholko.assistant.app.fragments.Left
+import com.tukholko.assistant.app.fragments.Profile
 import com.tukholko.assistant.app.fragments.Right
+import com.tukholko.assistant.auth.LoginActivity
 
 class AppActivity : AppCompatActivity() {
     private val leftFragment = Left()
-    private val centralFragment = Central()
+    private val centralFragment = Profile()
     private val rightFragment = Right()
     private val fragmentManager = supportFragmentManager
     private var activeFragment: Fragment = centralFragment
+    val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    lateinit var toolbar: ActionBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app)
 
-        toolbar = supportActionBar!!
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         fragmentManager.beginTransaction().apply {
@@ -36,17 +37,14 @@ class AppActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_left -> {
-                toolbar.title = "LEFT GAY SON"
                 fragmentManager.beginTransaction().hide(activeFragment).show(leftFragment).commit()
                 activeFragment = leftFragment
             }
             R.id.navigation_central -> {
-                toolbar.title = "VLADIMIRSKII CENTRAL "
                 fragmentManager.beginTransaction().hide(activeFragment).show(centralFragment).commit()
                 activeFragment = centralFragment
             }
             R.id.navigation_right -> {
-                toolbar.title = "RIGHTHTHTH"
                 fragmentManager.beginTransaction().hide(activeFragment).show(rightFragment).commit()
                 activeFragment = rightFragment
             }
@@ -61,4 +59,9 @@ class AppActivity : AppCompatActivity() {
         transaction.commit()
     }
 
+    fun signOut() {
+        auth.signOut()
+        finish()
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
 }
