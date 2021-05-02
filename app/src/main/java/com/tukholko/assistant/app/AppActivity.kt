@@ -2,13 +2,17 @@ package com.tukholko.assistant.app
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.zxing.integration.android.IntentIntegrator
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.fragments.Central
@@ -16,9 +20,7 @@ import com.tukholko.assistant.app.fragments.Left
 import com.tukholko.assistant.app.fragments.Right
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
-import com.yandex.mapkit.map.CameraPosition
-import com.yandex.mapkit.map.IconStyle
-import com.yandex.mapkit.map.MapObjectCollection
+import com.yandex.mapkit.map.*
 import com.yandex.mapkit.mapview.MapView
 import com.yandex.runtime.image.ImageProvider
 import retrofit2.Call
@@ -72,6 +74,20 @@ class AppActivity : AppCompatActivity() {
         })
     }
 
+    private val zaloopaListener =
+        MapObjectTapListener { mapObject, point ->
+            val bottomSheetDialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
+            val ctx = ContextThemeWrapper(this, R.style.BottomSheetDialogTheme)
+            val bottomSheetView = LayoutInflater.from(ctx).inflate(
+                R.layout.bottom_sheet,
+                findViewById<LinearLayout>(R.id.bottom_sheet)
+            )
+            bottomSheetDialog.setContentView(bottomSheetView)
+            bottomSheetDialog.findViewById<TextView>(R.id.shop_main_title)?.setText(mapObject.userData.toString())
+            bottomSheetDialog.show()
+            true
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         initializeMap()
 
@@ -123,6 +139,7 @@ class AppActivity : AppCompatActivity() {
             `is`.scale = 1.1f
             mark.setIcon(ImageProvider.fromResource(this, R.drawable.shop), `is`)
             mark.isDraggable = false
+            mark.addTapListener(zaloopaListener)
             mark.userData = shopPoint.localShopID.toString() + ", " + shopPoint.localShopName
         }
     }
