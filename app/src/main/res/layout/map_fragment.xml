@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="RGIHTGTGH GGGG" />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

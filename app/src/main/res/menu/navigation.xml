@@ -12,7 +12,7 @@
         android:title="profile" />
 
     <item
-        android:id="@+id/navigation_right"
+        android:id="@+id/navigation_map"
         android:icon="@drawable/ic_map"
         android:title="map" />
 
