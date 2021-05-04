@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="15dp"
-        android:text="Hui+"
+        android:text="@string/shop_main_title"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"/>

@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.zxing.integration.android.IntentIntegrator
 import com.tukholko.assistant.R
-import com.tukholko.assistant.app.fragments.Central
 import com.tukholko.assistant.app.fragments.Left
 import com.tukholko.assistant.app.fragments.Profile
 import com.tukholko.assistant.app.fragments.Right
@@ -33,7 +32,7 @@ import retrofit2.Response
 class AppActivity : AppCompatActivity() {
     private val leftFragment = Left()
     private val centralFragment = Profile()
-    private val rightFragment = Right()
+    private val mapFragment = Right()
     private val fragmentManager = supportFragmentManager
     private var activeFragment: Fragment = centralFragment
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -87,7 +86,7 @@ class AppActivity : AppCompatActivity() {
                 findViewById<LinearLayout>(R.id.bottom_sheet)
             )
             bottomSheetDialog.setContentView(bottomSheetView)
-            bottomSheetDialog.findViewById<TextView>(R.id.shop_main_title)?.setText(mapObject.userData.toString())
+            bottomSheetDialog.findViewById<TextView>(R.id.shop_main_title)?.setText((mapObject.userData as HashMap<*, *>)["Shop name"].toString())
             bottomSheetDialog.show()
             true
         }
@@ -143,7 +142,10 @@ class AppActivity : AppCompatActivity() {
             mark.setIcon(ImageProvider.fromResource(this, R.drawable.shop), `is`)
             mark.isDraggable = false
             mark.addTapListener(zaloopaListener)
-            mark.userData = shopPoint.localShopID.toString() + ", " + shopPoint.localShopName
+            val userDataMap = HashMap<String, String>()
+            userDataMap["Local ID"] = shopPoint.localShopID.toString()
+            userDataMap["Shop name"] = shopPoint.localShopName
+            mark.userData =  userDataMap
         }
     }
 
@@ -172,9 +174,9 @@ class AppActivity : AppCompatActivity() {
                 }
                 activeFragment = mapFragment
             }
+        }
         false
     }
-
 
     override fun onStart() {
         super.onStart()
