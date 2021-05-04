@@ -54,7 +54,8 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(emailField.text.toString(), passwordField.text.toString())
                 .addOnSuccessListener {
                     Log.d(TAG, "createUserWithEmail:success")
-                    addToDataBase(emailField.text.toString(), firstNameField.text.toString(), secondNameField.text.toString())
+                    var user = User(emailField.text.toString(), firstNameField.text.toString(), secondNameField.text.toString())
+                    addToDataBase(user)
                     Snackbar.make(authorizationLayout, "Регистрация завершена", Snackbar.LENGTH_SHORT).show()
                     progressBar.visibility = ProgressBar.INVISIBLE
                     auth.signOut()
@@ -72,8 +73,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
     }
 
-    private fun addToDataBase(email: String, firstName: String, secondName: String) {
-        val user = User(email, firstName, secondName)
+    private fun addToDataBase(user: User) {
         //TODO write into db
     }
 
