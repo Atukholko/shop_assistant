@@ -103,9 +103,9 @@ class AppActivity : AppCompatActivity() {
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         fragmentManager.beginTransaction().apply {
-            add(R.id.container, leftFragment, "LEFT FRAGMENT").hide(leftFragment)
             add(R.id.container, mapFragment, "MAP FRAGMENT").hide(mapFragment)
-            add(R.id.container, centralFragment, "CENTRAL NAHUI")
+            add(R.id.container, centralFragment, "CENTRAL NAHUI").hide(leftFragment)
+            add(R.id.container, leftFragment, "LEFT FRAGMENT")
         }.commit()
     }
 
@@ -154,10 +154,12 @@ class AppActivity : AppCompatActivity() {
             R.id.navigation_left -> {
                 fragmentManager.beginTransaction().hide(activeFragment).show(leftFragment).commit()
                 activeFragment = leftFragment
+                return@OnNavigationItemSelectedListener true;
             }
             R.id.navigation_central -> {
                 fragmentManager.beginTransaction().hide(activeFragment).show(centralFragment).commit()
                 activeFragment = centralFragment
+                return@OnNavigationItemSelectedListener true;
             }
             R.id.navigation_map -> {
                 fragmentManager.beginTransaction().hide(activeFragment).show(mapFragment).commit()
@@ -173,6 +175,7 @@ class AppActivity : AppCompatActivity() {
                     mapRestart = false
                 }
                 activeFragment = mapFragment
+                return@OnNavigationItemSelectedListener true;
             }
         }
         false
