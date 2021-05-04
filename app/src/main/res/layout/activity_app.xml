@@ -27,7 +27,7 @@
             <TextView
                 android:id="@+id/button_scan"
                 style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
                 android:drawablePadding="4dp"
