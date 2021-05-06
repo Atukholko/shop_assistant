@@ -5,7 +5,7 @@
     android:id="@+id/login_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/gray_200"
     tools:context=".auth.LoginActivity">
 
     <LinearLayout
@@ -28,9 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="180dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="30dp"
         android:layout_marginBottom="2dp"
         android:orientation="vertical">
 
@@ -41,7 +41,7 @@
             android:fontFamily="cursive"
             android:text="@string/app_name"
             android:textAlignment="center"
-            android:textColor="@color/cardview_dark_background"
+            android:textColor="@color/dark_blue"
             android:textSize="80sp" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="sans-serif-thin"
-            android:text="Текст"
+            android:text="@string/singIn"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="21sp" />
@@ -59,47 +59,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/purple_200"
+            app:met_primaryColor="@color/green_700"
             app:met_singleLineEllipsis="true"
             app:met_textColor="@color/black"
-            app:met_textColorHint="@color/black" />
+            app:met_textColorHint="@color/gray_700" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/passwordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:text=""
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/purple_200"
+            app:met_primaryColor="@color/green_700"
             app:met_singleLineEllipsis="true"
             app:met_textColor="@color/black"
-            app:met_textColorHint="@color/black" />
+            app:met_textColorHint="@color/gray_700" />
 
         <TextView
             android:id="@+id/moveToSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Sign up"
-            android:textColor="@color/teal_200" />
+            android:text="@string/register"
+            android:textColor="@color/green_700" />
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signInButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/auth_button"
         android:fontFamily="serif-monospace"
-        android:text="Вход"
-        android:textColor="@color/black" />
+        android:textSize="18dp"
+        android:text="@string/logIn"
+        android:textColor="@color/dark_blue" />
 
 </RelativeLayout>
