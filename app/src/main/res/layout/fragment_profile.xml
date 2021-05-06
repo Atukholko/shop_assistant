@@ -29,8 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="sans-serif-light"
-                android:text=""
-                android:textColor="@color/black"
+                android:text="@string/email"
+                android:textColor="@color/dark_blue"
                 android:textSize="24sp" />
 
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="sans-serif-thin"
-                android:text=""
+                android:text="@string/name"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="sans-serif-thin"
-                android:text=""
+                android:text="@string/surname"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -59,20 +59,23 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/white" />
+            android:background="@color/gray_700" />
 
         <Button
             android:id="@+id/signOut"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@color/purple_200"
+            android:backgroundTint="@color/white"
             android:fontFamily="serif-monospace"
+            android:textSize="18sp"
             android:text="ВЫЙТИ"
             android:textAlignment="textStart"
-            android:textColor="@color/black" />
+            android:textColor="@color/green_700"
+            android:paddingLeft="-4dp"
+            android:drawableLeft="@drawable/log_out"/>
 
     </LinearLayout>
 
