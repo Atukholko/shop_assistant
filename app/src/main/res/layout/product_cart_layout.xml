@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#f9faff">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="120dp"
         app:cardCornerRadius="5dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,12 +19,25 @@
             android:padding="10dp">
 
             <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/product_img"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/morgen"
                 app:riv_corner_radius="5dp" />
+
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fdkfkdfkdkfkdfk"
+                android:layout_toEndOf="@id/product_img"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"/>
+
+
 
         </RelativeLayout>
 
