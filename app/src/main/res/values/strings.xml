@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Assistant</string>
     <string name="shop_main_title">Sample title</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="email">email</string>
+    <string name="registration">Регистрация</string>
+    <string name="password">password</string>
+    <string name="singIn">Вход</string>
+    <string name="logIn">войти</string>
 </resources>
