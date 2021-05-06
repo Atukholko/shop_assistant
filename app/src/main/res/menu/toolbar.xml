@@ -9,9 +9,4 @@
         app:showAsAction="never"
         />
 
-    <!-- Settings, should always be in the overflow -->
-    <item android:id="@+id/action_settings"
-        android:title="2"
-        app:showAsAction="never"/>
-
 </menu>

@@ -9,11 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/ic_map_reload" />
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_map_reload"
+            />
 
     </com.yandex.mapkit.mapview.MapView>
 
