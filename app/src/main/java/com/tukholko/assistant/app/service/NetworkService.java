@@ -1,4 +1,4 @@
-package com.tukholko.assistant.app;
+package com.tukholko.assistant.app.service;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -22,7 +22,9 @@ public class NetworkService {
         return mInstance;
     }
 
-    public ShopService getJSONApi() {
+    public ShopService getShopAPI() {
         return mRetrofit.create(ShopService.class);
     }
+    public ProductService getProductAPI() { return mRetrofit.create(ProductService.class); }
+    public UserService getUserAPI() { return mRetrofit.create(UserService.class); }
 }

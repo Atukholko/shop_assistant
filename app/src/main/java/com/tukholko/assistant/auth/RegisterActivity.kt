@@ -7,13 +7,19 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.rengwuxian.materialedittext.MaterialEditText
 import com.tukholko.assistant.R
+import com.tukholko.assistant.app.service.NetworkService
 import com.tukholko.assistant.auth.validator.AuthValidator
+import com.tukholko.assistant.model.Shop
 import com.tukholko.assistant.model.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -74,7 +80,18 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun addToDataBase(user: User) {
-        //TODO write into db
+        NetworkService.getInstance()
+                .userAPI
+                .postData(user).enqueue(object : Callback<User> {
+                    override fun onResponse(call: Call<User>, response: Response<User>) {
+                        Toast.makeText(this@RegisterActivity, "klass!!", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onFailure(call: Call<User>, t: Throwable) {
+                        Toast.makeText(this@RegisterActivity, "posasi!!", Toast.LENGTH_SHORT).show()
+                    }
+
+                })
     }
 
     private fun validateForm(emailField: MaterialEditText, passwordField: MaterialEditText, firstNameField: MaterialEditText, secondNameField: MaterialEditText): Boolean {

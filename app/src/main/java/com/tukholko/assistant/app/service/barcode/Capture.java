@@ -1,4 +1,4 @@
-package com.tukholko.assistant.app;
+package com.tukholko.assistant.app.service.barcode;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
 

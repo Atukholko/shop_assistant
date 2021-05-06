@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -20,7 +19,10 @@ import com.tukholko.assistant.R
 import com.tukholko.assistant.app.fragments.Left
 import com.tukholko.assistant.app.fragments.Profile
 import com.tukholko.assistant.app.fragments.Right
+import com.tukholko.assistant.app.service.NetworkService
+import com.tukholko.assistant.app.service.barcode.Capture
 import com.tukholko.assistant.auth.LoginActivity
+import com.tukholko.assistant.model.Shop
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.*
@@ -60,9 +62,9 @@ class AppActivity : AppCompatActivity() {
         val intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (intentResult.contents != null) {
             val toast = Toast.makeText(
-                applicationContext,
-                intentResult.contents,
-                Toast.LENGTH_SHORT
+                    applicationContext,
+                    intentResult.contents,
+                    Toast.LENGTH_SHORT
             )
             toast.show()
         }
@@ -79,18 +81,18 @@ class AppActivity : AppCompatActivity() {
     }
 
     private val zaloopaListener =
-        MapObjectTapListener { mapObject, point ->
-            val bottomSheetDialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
-            val ctx = ContextThemeWrapper(this, R.style.BottomSheetDialogTheme)
-            val bottomSheetView = LayoutInflater.from(ctx).inflate(
-                R.layout.bottom_sheet,
-                findViewById<LinearLayout>(R.id.bottom_sheet)
-            )
-            bottomSheetDialog.setContentView(bottomSheetView)
-            bottomSheetDialog.findViewById<TextView>(R.id.shop_main_title)?.setText((mapObject.userData as HashMap<*, *>)["Shop name"].toString())
-            bottomSheetDialog.show()
-            true
-        }
+            MapObjectTapListener { mapObject, point ->
+                val bottomSheetDialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
+                val ctx = ContextThemeWrapper(this, R.style.BottomSheetDialogTheme)
+                val bottomSheetView = LayoutInflater.from(ctx).inflate(
+                        R.layout.bottom_sheet,
+                        findViewById<LinearLayout>(R.id.bottom_sheet)
+                )
+                bottomSheetDialog.setContentView(bottomSheetView)
+                bottomSheetDialog.findViewById<TextView>(R.id.shop_main_title)?.setText((mapObject.userData as HashMap<*, *>)["Shop name"].toString())
+                bottomSheetDialog.show()
+                true
+            }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         initializeMap()
@@ -110,28 +112,28 @@ class AppActivity : AppCompatActivity() {
         }.commit()
     }
 
-    private fun initializeMapWithShops() {
+    fun initializeMapWithShops() {
         NetworkService.getInstance()
-            .jsonApi
-            .shops
-            .enqueue(object : Callback<List<Shop?>?> {
-                override fun onResponse(
-                    call: Call<List<Shop?>?>,
-                    response: Response<List<Shop?>?>
-                ) {
-                    val shops = response.body()
-                    markShops(shops as List<Shop>)
-                }
+                .shopAPI
+                .shops
+                .enqueue(object : Callback<List<Shop?>?> {
+                    override fun onResponse(
+                            call: Call<List<Shop?>?>,
+                            response: Response<List<Shop?>?>
+                    ) {
+                        val shops = response.body()
+                        markShops(shops as List<Shop>)
+                    }
 
-                override fun onFailure(call: Call<List<Shop?>?>, t: Throwable) {
-                    val toast = Toast.makeText(
-                        applicationContext,
-                        t.message,
-                        Toast.LENGTH_SHORT
-                    )
-                    toast.show()
-                }
-            })
+                    override fun onFailure(call: Call<List<Shop?>?>, t: Throwable) {
+                        val toast = Toast.makeText(
+                                applicationContext,
+                                t.message,
+                                Toast.LENGTH_SHORT
+                        )
+                        toast.show()
+                    }
+                })
     }
 
     private fun markShops(shops: List<Shop>) {
@@ -146,7 +148,7 @@ class AppActivity : AppCompatActivity() {
             val userDataMap = HashMap<String, String>()
             userDataMap["Local ID"] = shopPoint.localShopID.toString()
             userDataMap["Shop name"] = shopPoint.localShopName
-            mark.userData =  userDataMap
+            mark.userData = userDataMap
         }
     }
 

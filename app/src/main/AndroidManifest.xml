@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".app.Capture"
+            android:name=".app.service.barcode.Capture"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
