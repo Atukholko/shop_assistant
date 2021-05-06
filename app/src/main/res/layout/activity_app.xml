@@ -13,7 +13,7 @@
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#f9faff"
+        android:background="@color/gray_200"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:menu="@menu/toolbar">

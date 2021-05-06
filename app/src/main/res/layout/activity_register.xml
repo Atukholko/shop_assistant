@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".authorization.fragments.RegisterPage">
+    tools:context=".auth.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,6 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:orientation="vertical">
 
 
@@ -36,7 +38,7 @@
             android:fontFamily="cursive"
             android:text="@string/app_name"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_blue"
             android:textSize="80sp" />
 
         <TextView
@@ -46,7 +48,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:fontFamily="sans-serif-thin"
-            android:text="Для регистрации заполните все поля"
+            android:text="@string/registration"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -55,76 +57,68 @@
             android:id="@+id/emailFieldRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="28dp"
-            android:hint="email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:text=""
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/purple_200"
+            app:met_primaryColor="@color/green_700"
             app:met_singleLineEllipsis="true"
             app:met_textColor="@color/black"
-            app:met_textColorHint="@color/black" />
+            app:met_textColorHint="@color/gray_700" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/passwordFieldRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
-            android:hint="password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:text=""
             android:textSize="16sp"
-            app:met_primaryColor="@color/purple_200"
+            app:met_primaryColor="@color/green_700"
             app:met_singleLineEllipsis="true"
             app:met_textColor="@color/black"
-            app:met_textColorHint="@color/black" />
+            app:met_textColorHint="@color/gray_700" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/nameFieldRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
-            android:hint="Имя"
+            android:hint="@string/name"
             android:inputType="text"
             android:text=""
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/purple_200"
+            app:met_primaryColor="@color/green_700"
             app:met_singleLineEllipsis="true"
             app:met_textColor="@color/black"
-            app:met_textColorHint="@color/black" />
+            app:met_textColorHint="@color/gray_700" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/secondNameFieldRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
-            android:hint="Фамилия"
+            android:hint="@string/surname"
             android:inputType="text"
             android:text=""
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/purple_200"
+            app:met_primaryColor="@color/green_700"
             app:met_singleLineEllipsis="true"
             app:met_textColor="@color/black"
-            app:met_textColorHint="@color/black" />
+            app:met_textColorHint="@color/gray_700" />
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/auth_button"
         android:fontFamily="serif-monospace"
-        android:text="register"
-        android:textColor="@color/black" />
+        android:text="@string/register"
+        android:textColor="@color/dark_blue" />
 
 </RelativeLayout>
