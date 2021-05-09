@@ -9,4 +9,8 @@
     <string name="password">password</string>
     <string name="singIn">Вход</string>
     <string name="logIn">войти</string>
+    <string name="sample_product_name">Sample product name</string>
+    <string name="sample_product_price">25 BYN</string>
+    <string name="sample_product_weight">100000g</string>
+    <string name="sample_product_manufacturer">Belarus</string>
 </resources>

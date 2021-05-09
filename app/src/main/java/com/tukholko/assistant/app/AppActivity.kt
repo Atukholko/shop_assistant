@@ -22,6 +22,7 @@ import com.tukholko.assistant.app.fragments.Right
 import com.tukholko.assistant.app.service.NetworkService
 import com.tukholko.assistant.app.service.barcode.Capture
 import com.tukholko.assistant.auth.LoginActivity
+import com.tukholko.assistant.model.Product
 import com.tukholko.assistant.model.Shop
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
@@ -61,13 +62,17 @@ class AppActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         val intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (intentResult.contents != null) {
-            val toast = Toast.makeText(
+            Toast.makeText(
                     applicationContext,
                     intentResult.contents,
                     Toast.LENGTH_SHORT
-            )
-            toast.show()
+            ).show()
+            addProductToCart(intentResult.contents)
         }
+    }
+
+    fun addProductToCart(productData : String) {
+        RecyclerAdapter.addProduct(Product("Sample soup", 1.1, "Belarus", "This is a soup!", 2.4))
     }
 
     private fun initializeScanButton() {
@@ -80,7 +85,7 @@ class AppActivity : AppCompatActivity() {
         })
     }
 
-    private val zaloopaListener =
+    private val mapObjectListener =
             MapObjectTapListener { mapObject, point ->
                 val bottomSheetDialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
                 val ctx = ContextThemeWrapper(this, R.style.BottomSheetDialogTheme)
@@ -144,7 +149,7 @@ class AppActivity : AppCompatActivity() {
             `is`.scale = 1.1f
             mark.setIcon(ImageProvider.fromResource(this, R.drawable.shop), `is`)
             mark.isDraggable = false
-            mark.addTapListener(zaloopaListener)
+            mark.addTapListener(mapObjectListener)
             val userDataMap = HashMap<String, String>()
             userDataMap["Local ID"] = shopPoint.localShopID.toString()
             userDataMap["Shop name"] = shopPoint.localShopName
