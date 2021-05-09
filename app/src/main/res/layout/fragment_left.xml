@@ -30,7 +30,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="Cart is empty"
+        android:text="@string/empty_cart_message"
         />
 
     <View

@@ -40,7 +40,7 @@ class Cart : Fragment() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                if (s == "0") {
+                if (s.toString().equals("0")) {
                     recyclerView?.visibility = View.GONE
                     emptyCartView?.visibility = View.VISIBLE
                 } else {
