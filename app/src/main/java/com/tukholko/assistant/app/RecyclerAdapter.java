@@ -41,13 +41,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public void addProduct(Product product) {
-        products.add(new CartProduct(product, 1));
+        boolean productFound = false;
+        for(int i = 0; i < products.size(); i++) {
+            if(products.get(i).product.getName().equals(product.getName())) {
+                productFound = true;
+                products.get(i).count++;
+                notifyItemChanged(i);
+            }
+        }
+        if (!productFound) {
+            products.add(new CartProduct(product, 1));
+        }
         totalPrice += product.getPrice();
         updateTotalPrice();
     }
 
     public void updateTotalPrice() {
-        totalPriceView.setText(new DecimalFormat("#.0#").format(totalPrice).toString());
+        totalPriceView.setText(new DecimalFormat("#.##").format(Math.abs(totalPrice)));
     }
 
     @NonNull
