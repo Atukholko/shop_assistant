@@ -7,22 +7,6 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_background">
 
-    <TextView
-        android:id="@+id/shop_main_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="15dp"
-        android:text="@string/shop_main_title"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/black"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,35 +30,37 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/shop_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Posasi"
+                android:text="@string/shop_name"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/shop_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="U u u"
+                android:text="@string/shop_description"
                 android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
+                android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/shop_city_and_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Da ya bogaty uebok"
+                android:text="@string/shop_country_and_city"
                 android:textColor="@color/black"
                 android:textSize="15sp"/>
 
             <TextView
+                android:id="@+id/shop_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Da u menya denyak mnogo"
+                android:text="@string/shop_address"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -94,7 +80,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/green_700"
-        android:text="4len"
+        android:text="@string/button_select_shop_text"
         android:textColor="@color/white"
         android:textSize="15sp"/>
 

@@ -13,4 +13,9 @@
     <string name="sample_product_price">25 BYN</string>
     <string name="sample_product_weight">100000g</string>
     <string name="sample_product_manufacturer">Belarus</string>
+    <string name="button_select_shop_text">Выбрать магазин</string>
+    <string name="shop_name">Shop name sample</string>
+    <string name="shop_description">Sample description</string>
+    <string name="shop_country_and_city">Country, city</string>
+    <string name="shop_address">Address</string>
 </resources>

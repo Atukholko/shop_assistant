@@ -100,7 +100,9 @@ class AppActivity : AppCompatActivity() {
                         findViewById<LinearLayout>(R.id.bottom_sheet)
                 )
                 bottomSheetDialog.setContentView(bottomSheetView)
-                bottomSheetDialog.findViewById<TextView>(R.id.shop_main_title)?.setText((mapObject.userData as HashMap<*, *>)["Shop name"].toString())
+                bottomSheetDialog.findViewById<TextView>(R.id.shop_name)?.text = (mapObject.userData as HashMap<*, *>)["Shop name"].toString()
+                bottomSheetDialog.findViewById<TextView>(R.id.shop_city_and_country)?.text = (mapObject.userData as HashMap<*, *>)["Shop country and city"].toString()
+                bottomSheetDialog.findViewById<TextView>(R.id.shop_address)?.text = (mapObject.userData as HashMap<*, *>)["Shop address"].toString()
                 bottomSheetDialog.findViewById<Button>(R.id.button_select_shop)?.setOnClickListener {
                     selectedShop = (mapObject.userData as HashMap<*, *>)["Local ID"].toString().toInt()
                     bottomSheetDialog.dismiss();
@@ -162,6 +164,8 @@ class AppActivity : AppCompatActivity() {
             val userDataMap = HashMap<String, String>()
             userDataMap["Local ID"] = shopPoint.localShopID.toString()
             userDataMap["Shop name"] = shopPoint.localShopName
+            userDataMap["Shop country and city"] = shopPoint.country + ", " + shopPoint.city
+            userDataMap["Shop address"] = shopPoint.address
             mark.userData = userDataMap
         }
     }

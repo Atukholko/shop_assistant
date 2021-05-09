@@ -7,6 +7,12 @@ data class Shop(
         var localShopID: Int,
         @SerializedName("Local_shop_name")
         var localShopName: String,
+        @SerializedName("Country")
+        var country: String,
+        @SerializedName("City")
+        var city: String,
+        @SerializedName("Address")
+        var address: String,
         @SerializedName("Latitude")
         var latitude: Double,
         @SerializedName("Longitude")
