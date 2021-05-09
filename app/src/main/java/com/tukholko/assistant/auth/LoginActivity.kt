@@ -68,12 +68,14 @@ class LoginActivity : AppCompatActivity() {
         }
         Log.d(TAG, "signInAccount:" + emailField.text.toString())
         progressBar.visibility = ProgressBar.VISIBLE
+        findViewById<Button>(R.id.signInButton).isClickable = false
         auth.signInWithEmailAndPassword(emailField.text.toString(), passwordField.text.toString())
                 .addOnSuccessListener {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     updateUI(user)
                     progressBar.visibility = ProgressBar.INVISIBLE
+                    findViewById<Button>(R.id.signInButton).isClickable = true
                 }
                 .addOnFailureListener {
                     Log.e(TAG, "signInUserWithEmail:failure(Не существует такой учетной записи)")
@@ -85,6 +87,7 @@ class LoginActivity : AppCompatActivity() {
                             Snackbar.LENGTH_SHORT
                     ).show()
                     progressBar.visibility = ProgressBar.INVISIBLE
+                    findViewById<Button>(R.id.signInButton).isClickable = true
                 }
     }
 

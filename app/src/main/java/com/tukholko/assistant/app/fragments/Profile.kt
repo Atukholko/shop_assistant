@@ -32,7 +32,7 @@ class Profile : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun getUser() {
+    private fun getUser(email: String) {
         //TODO make reading from db
     }
 

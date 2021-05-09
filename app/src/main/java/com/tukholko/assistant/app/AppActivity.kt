@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.zxing.integration.android.IntentIntegrator
 import com.tukholko.assistant.R
-import com.tukholko.assistant.app.fragments.Left
+import com.tukholko.assistant.app.fragments.Cart
 import com.tukholko.assistant.app.fragments.Profile
 import com.tukholko.assistant.app.fragments.Right
 import com.tukholko.assistant.app.service.NetworkService
@@ -33,11 +33,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AppActivity : AppCompatActivity() {
-    private val leftFragment = Left()
-    private val centralFragment = Profile()
+    private val cartFragment = Cart()
+    private val profileFragment = Profile()
     private val mapFragment = Right()
     private val fragmentManager = supportFragmentManager
-    private var activeFragment: Fragment = centralFragment
+    private var activeFragment: Fragment = cartFragment
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     // Map-related variables
@@ -107,8 +107,8 @@ class AppActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         fragmentManager.beginTransaction().apply {
             add(R.id.container, mapFragment, "MAP FRAGMENT").hide(mapFragment)
-            add(R.id.container, centralFragment, "CENTRAL NAHUI").hide(leftFragment)
-            add(R.id.container, leftFragment, "LEFT FRAGMENT")
+            add(R.id.container, cartFragment, "CART FRAGMENT")
+            add(R.id.container, profileFragment, "PROFILE FRAGMENT").hide(profileFragment)
         }.commit()
     }
 
@@ -155,13 +155,13 @@ class AppActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_left -> {
-                fragmentManager.beginTransaction().hide(activeFragment).show(leftFragment).commit()
-                activeFragment = leftFragment
+                fragmentManager.beginTransaction().hide(activeFragment).show(cartFragment).commit()
+                activeFragment = cartFragment
                 return@OnNavigationItemSelectedListener true;
             }
             R.id.navigation_central -> {
-                fragmentManager.beginTransaction().hide(activeFragment).show(centralFragment).commit()
-                activeFragment = centralFragment
+                fragmentManager.beginTransaction().hide(activeFragment).show(profileFragment).commit()
+                activeFragment = profileFragment
                 return@OnNavigationItemSelectedListener true;
             }
             R.id.navigation_map -> {

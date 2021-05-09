@@ -84,11 +84,11 @@ class RegisterActivity : AppCompatActivity() {
                 .userAPI
                 .postData(user).enqueue(object : Callback<User> {
                     override fun onResponse(call: Call<User>, response: Response<User>) {
-                        Toast.makeText(this@RegisterActivity, "klass!!", Toast.LENGTH_SHORT).show()
+                        Log.i(TAG, "user is wrote into db")
                     }
 
                     override fun onFailure(call: Call<User>, t: Throwable) {
-                        Toast.makeText(this@RegisterActivity, "posasi!!", Toast.LENGTH_SHORT).show()
+                        Log.i(TAG, "user is not wrote into db")
                     }
 
                 })

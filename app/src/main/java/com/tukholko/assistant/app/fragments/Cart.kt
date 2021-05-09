@@ -1,7 +1,6 @@
 package com.tukholko.assistant.app.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.RecyclerAdapter
 
-class Left : Fragment() {
+class Cart : Fragment() {
     var text: TextView? = null
     var button: Button? = null
     var counter: Int = 0
@@ -41,6 +40,6 @@ class Left : Fragment() {
     }
 
     companion object {
-        fun newInstance(): Left = Left()
+        fun newInstance(): Cart = Cart()
     }
 }
