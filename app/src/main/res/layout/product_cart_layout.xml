@@ -15,7 +15,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white">
+            android:background="@color/white"
+            >
 
             <FrameLayout
                 android:layout_width="100dp"
@@ -36,26 +37,23 @@
 
             </FrameLayout>
 
+            <LinearLayout
+                android:id="@+id/product_info"
+                android:orientation="vertical"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/image_frame"
+                >
+
             <TextView
                 android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sample_product_name"
-                android:layout_toEndOf="@id/image_frame"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/dark_blue"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@id/product_name"
-                android:layout_marginTop="33dp"
-
-                >
 
                 <TextView
                     android:id="@+id/product_weight"
@@ -63,7 +61,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sample_product_weight"
                     android:textColor="@color/gray_700"
-
                     />
 
                 <TextView
@@ -72,26 +69,71 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sample_product_manufacturer"
                     android:textColor="@color/gray_700"
-                    android:layout_marginLeft="5dp"
+                    android:singleLine="true"
                     />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_product_price"
+                    android:textColor="@color/green_700"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:id="@+id/product_price" />
 
             </LinearLayout>
 
-
-
-
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/product_name"
-                android:layout_marginTop="55dp"
-                android:text="@string/sample_product_price"
-                android:textColor="@color/green_700"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:id="@+id/product_price"/>
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal"
+                android:layout_toEndOf="@id/product_info"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="7dp"
+                >
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="20dp"
+                    android:layout_height="25dp"
+                    app:iconTint="@color/green_700"
+                    app:backgroundTint="@color/white"
+                    app:backgroundTintMode="add"
+                    app:icon="@drawable/remove_cart"
+                    app:iconGravity="textStart"
+                    android:gravity="center"
+                    app:strokeColor="@color/green_700"
+                    app:strokeWidth="1dp"
+                    app:iconPadding="0dp"/>
 
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_blue"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:textAlignment="center"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="20dp"
+                    android:layout_height="25dp"
+                    app:iconTint="@color/green_700"
+                    app:strokeColor="@color/green_700"
+                    app:strokeWidth="1dp"
+                    app:cornerRadius="3dp"
+                    app:backgroundTint="@color/white"
+                    app:backgroundTintMode="add"
+                    app:icon="@drawable/add_cart"
+                    app:iconGravity="textStart"
+                    android:gravity="center"
+                    app:iconPadding="0dp"/>
+
+            </LinearLayout>
 
 
         </RelativeLayout>

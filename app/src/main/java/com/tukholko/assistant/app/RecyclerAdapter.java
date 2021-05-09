@@ -25,8 +25,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public RecyclerAdapter(Context context) {
         this.context = context;
-        addProduct(new Product("Moloko+", 22.5, "Belarus", "a", 28.5));
+        addProduct(new Product("Moloko+", 22.5, "Belarussssssssssssssssssssssssssssssssssssssssssssssssssss", "a", 28.5));
         addProduct(new Product("Zaloopa", 211.2, "Italy", "a", 7.33));
+        addProduct(new Product("Big name aboba amogus", 20010.2, "Russian Federation", "a", 85.100));
+        addProduct(new Product("Big name aboba amogus", 20010.2, "Russian Federation", "a", 85.100));
+        addProduct(new Product("Big name aboba amogus", 20010.2, "Russian Federation", "a", 85.100));
+        addProduct(new Product("Big name aboba amogus", 20010.2, "Russian Federation", "a", 85.100));
+        addProduct(new Product("Big name aboba amogus", 20010.2, "Russian Federation", "a", 85.100));
+        addProduct(new Product("Big name aboba amogus", 20010.2, "Russian Federation", "a", 85.100));
         addProduct(new Product("Big name aboba amogus", 20010.2, "Russian Federation", "a", 85.100));
     }
 
