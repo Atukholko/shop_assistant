@@ -89,7 +89,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/button_shop"
+        android:id="@+id/button_select_shop"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"

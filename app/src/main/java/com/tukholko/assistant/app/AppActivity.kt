@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
@@ -34,12 +36,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AppActivity : AppCompatActivity() {
+    // Fragment-related variables
     private val cartFragment = Cart()
     private val profileFragment = Profile()
     private val mapFragment = Right()
     private val fragmentManager = supportFragmentManager
     private var activeFragment: Fragment = cartFragment
-    val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     // Map-related variables
     private var mapView: MapView? = null
@@ -49,9 +51,13 @@ class AppActivity : AppCompatActivity() {
     private var mapRestart = true
     private var mapObjects: MapObjectCollection? = null
 
+    val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
     private var btScan: TextView? = null
 
     lateinit var toolbar: ActionBar
+
+    private var selectedShop : Int? = null
 
     private fun initializeMap() {
         MapKitFactory.setApiKey(MAPKIT_API_KEY)
@@ -95,6 +101,10 @@ class AppActivity : AppCompatActivity() {
                 )
                 bottomSheetDialog.setContentView(bottomSheetView)
                 bottomSheetDialog.findViewById<TextView>(R.id.shop_main_title)?.setText((mapObject.userData as HashMap<*, *>)["Shop name"].toString())
+                bottomSheetDialog.findViewById<Button>(R.id.button_select_shop)?.setOnClickListener {
+                    selectedShop = (mapObject.userData as HashMap<*, *>)["Local ID"].toString().toInt()
+                    bottomSheetDialog.dismiss();
+                }
                 bottomSheetDialog.show()
                 true
             }
@@ -131,12 +141,11 @@ class AppActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<List<Shop?>?>, t: Throwable) {
-                        val toast = Toast.makeText(
+                        Toast.makeText(
                                 applicationContext,
                                 t.message,
                                 Toast.LENGTH_SHORT
-                        )
-                        toast.show()
+                        ).show()
                     }
                 })
     }
