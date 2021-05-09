@@ -95,6 +95,7 @@
                 >
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/decrease_product_quantity_button"
                     android:layout_width="20dp"
                     android:layout_height="25dp"
                     app:iconTint="@color/green_700"
@@ -109,9 +110,10 @@
 
 
                 <TextView
+                    android:id="@+id/product_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="22"
+                    android:text="@string/product_quantity"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/dark_blue"
@@ -120,6 +122,7 @@
                     android:textAlignment="center"/>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/increase_product_quantity_button"
                     android:layout_width="20dp"
                     android:layout_height="25dp"
                     app:iconTint="@color/green_700"

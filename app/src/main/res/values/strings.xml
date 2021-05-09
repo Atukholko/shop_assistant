@@ -18,4 +18,5 @@
     <string name="shop_description">Sample description</string>
     <string name="shop_country_and_city">Country, city</string>
     <string name="shop_address">Address</string>
+    <string name="product_quantity">1</string>
 </resources>

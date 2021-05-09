@@ -78,7 +78,7 @@ class AppActivity : AppCompatActivity() {
     }
 
     fun addProductToCart(productData : String) {
-        RecyclerAdapter.addProduct(Product("Sample soup", 1.1, "Belarus", "This is a soup!", 2.4))
+        RecyclerAdapter.addProduct(Product(productData, 1.1, "Belarus", "This is a soup!", 2.4))
     }
 
     private fun initializeScanButton() {
@@ -127,6 +127,10 @@ class AppActivity : AppCompatActivity() {
             add(R.id.container, cartFragment, "CART FRAGMENT")
             add(R.id.container, profileFragment, "PROFILE FRAGMENT").hide(profileFragment)
         }.commit()
+
+        addProductToCart("1")
+        addProductToCart("2")
+        addProductToCart("3")
     }
 
     fun initializeMapWithShops() {
