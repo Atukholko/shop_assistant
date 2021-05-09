@@ -24,4 +24,8 @@
     <string name="total_price">0</string>
     <string name="empty_cart_text">Воспользуйтесь сканером штрихкодов для ее пополнения</string>
     <string name="empty_cart_headline">Ваша Корзина Пуста</string>
+    <string name="logout">Выход</string>
+    <string name="logout_text">Вы действительно хотите выйти?</string>
+    <string name="yes">Да</string>
+    <string name="no">нет</string>
 </resources>

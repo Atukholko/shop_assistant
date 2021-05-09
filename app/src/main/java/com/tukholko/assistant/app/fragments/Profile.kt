@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.AppActivity
+import com.tukholko.assistant.app.fragments.dialog.LogoutDialog
 import com.tukholko.assistant.app.service.NetworkService
 import com.tukholko.assistant.model.User
 import retrofit2.Call
@@ -37,7 +38,7 @@ class Profile : Fragment() {
         secondName = view.findViewById(R.id.profileSecondName)
 
         view.findViewById<Button>(R.id.signOut).setOnClickListener {
-            (activity as AppActivity?)!!.signOut()
+            logout()
         }
         super.onViewCreated(view, savedInstanceState)
     }
@@ -63,6 +64,11 @@ class Profile : Fragment() {
                         Log.e(TAG, "user read error")
                     }
                 })
+    }
+
+
+    private fun logout() {
+        fragmentManager?.let { LogoutDialog().show(it, "MyCustomFragment") }
     }
 
     companion object {
