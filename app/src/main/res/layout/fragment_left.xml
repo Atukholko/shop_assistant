@@ -16,6 +16,21 @@
         android:layout_above="@id/horizontal_bar_cart"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/cart_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/green_700"
+        android:background="@color/gray_200"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_above="@id/horizontal_bar_cart"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="Cart is empty"
         />
 
     <View
@@ -77,8 +92,6 @@
             android:textColor="@color/white"
             android:background="@drawable/confirm_payment_button"
             />
-
-
 
     </LinearLayout>
 
