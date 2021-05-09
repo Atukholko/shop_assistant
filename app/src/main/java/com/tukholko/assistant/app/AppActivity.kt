@@ -131,6 +131,14 @@ class AppActivity : AppCompatActivity() {
         addProductToCart("1")
         addProductToCart("2")
         addProductToCart("3")
+        addProductToCart("4")
+        addProductToCart("5")
+        addProductToCart("6")
+        addProductToCart("7")
+        addProductToCart("8")
+        addProductToCart("9")
+        addProductToCart("10")
+        addProductToCart("11")
     }
 
     fun initializeMapWithShops() {

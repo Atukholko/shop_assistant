@@ -101,8 +101,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                         products.get(productIndex).count--;
                         notifyItemChanged(productIndex);
                     } else {
-                        products.remove(productIndex);
+                        products.remove(productIndex.intValue());
                         notifyItemRemoved(productIndex);
+                        notifyDataSetChanged();
                     }
                 }
             });
