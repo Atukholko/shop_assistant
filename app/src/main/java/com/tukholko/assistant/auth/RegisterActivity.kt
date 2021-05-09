@@ -56,6 +56,7 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
         Log.d(TAG, "createAccount:" + emailField.text.toString())
+        findViewById<Button>(R.id.registerButton).isClickable = false
         progressBar.visibility = ProgressBar.VISIBLE
         auth.createUserWithEmailAndPassword(emailField.text.toString(), passwordField.text.toString())
                 .addOnSuccessListener {
@@ -64,6 +65,7 @@ class RegisterActivity : AppCompatActivity() {
                     addToDataBase(user)
                     Snackbar.make(authorizationLayout, "Регистрация завершена", Snackbar.LENGTH_SHORT).show()
                     progressBar.visibility = ProgressBar.INVISIBLE
+                    findViewById<Button>(R.id.registerButton).isClickable = true
                     auth.signOut()
                     val intent = Intent()
                     intent.putExtra("email", emailField.text.toString())
@@ -75,6 +77,7 @@ class RegisterActivity : AppCompatActivity() {
                     Log.e(TAG, "createUserWithEmail:failure(Указана неверная/зарегистрированная почта)")
                     emailField.setText("")
                     Snackbar.make(authorizationLayout, "Указана неверная/зарегистрированная почта", Snackbar.LENGTH_SHORT).show()
+                    findViewById<Button>(R.id.registerButton).isClickable = true
                     progressBar.visibility = ProgressBar.INVISIBLE
                 }
     }
