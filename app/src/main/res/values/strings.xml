@@ -19,4 +19,7 @@
     <string name="shop_country_and_city">Country, city</string>
     <string name="shop_address">Address</string>
     <string name="product_quantity">1</string>
+    <string name="payment_button_text">Оплатить</string>
+    <string name="price_currency_text">BYN</string>
+    <string name="total_price">228.87</string>
 </resources>

@@ -20,6 +20,8 @@ class Cart : Fragment() {
     var recyclerView : RecyclerView? = null;
     var adapter : RecyclerAdapter? = null;
 
+    var totalPriceView: TextView? = null;
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_left, container, false)
     }
@@ -32,7 +34,7 @@ class Cart : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(this.context)
         adapter = RecyclerAdapter(this.context)
         recyclerView?.adapter = adapter
-        // ---
+        adapter!!.setTotalPriceView(view.findViewById<TextView>(R.id.total_price))
     }
 
     override fun onStart() {

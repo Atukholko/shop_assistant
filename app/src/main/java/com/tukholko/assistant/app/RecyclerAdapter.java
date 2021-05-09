@@ -5,22 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.zxing.integration.android.IntentIntegrator;
 import com.tukholko.assistant.R;
 import com.tukholko.assistant.model.Product;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-import static android.widget.Toast.LENGTH_SHORT;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     Context context;
+    TextView totalPriceView;
+    Double totalPrice = 0.0;
+
+    public void setTotalPriceView(TextView textView) {
+        totalPriceView = textView;
+    }
 
     private static class CartProduct {
         public Product product;
@@ -32,14 +34,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
     }
 
-    static ArrayList<CartProduct> products = new ArrayList<>();
+    ArrayList<CartProduct> products = new ArrayList<>();
 
     public RecyclerAdapter(Context context) {
         this.context = context;
     }
 
-    public static void addProduct(Product product) {
-        products.add(new CartProduct(product, 3));
+    public void addProduct(Product product) {
+        products.add(new CartProduct(product, 1));
+        totalPrice += product.getPrice();
+        updateTotalPrice();
+    }
+
+    public void updateTotalPrice() {
+        totalPriceView.setText(new DecimalFormat("#.0#").format(totalPrice).toString());
     }
 
     @NonNull
@@ -89,6 +97,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             itemView.findViewById(R.id.increase_product_quantity_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    totalPrice += products.get(productIndex).product.getPrice();
+                    updateTotalPrice();
                     products.get(productIndex).count++;
                     notifyItemChanged(productIndex);
                 }
@@ -97,10 +107,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             itemView.findViewById(R.id.decrease_product_quantity_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    totalPrice -= products.get(productIndex).product.getPrice();
+                    updateTotalPrice();
                     if(products.get(productIndex).count > 1) {
                         products.get(productIndex).count--;
                         notifyItemChanged(productIndex);
                     } else {
+
                         products.remove(productIndex.intValue());
                         notifyItemRemoved(productIndex);
                         notifyDataSetChanged();

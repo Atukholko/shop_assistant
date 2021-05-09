@@ -78,12 +78,13 @@ class AppActivity : AppCompatActivity() {
     }
 
     fun addProductToCart(productData : String) {
-        RecyclerAdapter.addProduct(Product(productData, 1.1, "Belarus", "This is a soup!", 2.4))
+        cartFragment.adapter?.addProduct(Product(productData, 1.1, "Belarus", "This is a soup!", 2.4))
     }
 
     private fun initializeScanButton() {
         btScan = findViewById<TextView>(R.id.button_scan)
         btScan!!.setOnClickListener(View.OnClickListener {
+            addProductToCart("2")
             val intentIntegrator = IntentIntegrator(this@AppActivity)
             intentIntegrator.setOrientationLocked(true)
             intentIntegrator.captureActivity = Capture::class.java
@@ -128,17 +129,16 @@ class AppActivity : AppCompatActivity() {
             add(R.id.container, profileFragment, "PROFILE FRAGMENT").hide(profileFragment)
         }.commit()
 
-        addProductToCart("1")
-        addProductToCart("2")
-        addProductToCart("3")
-        addProductToCart("4")
-        addProductToCart("5")
-        addProductToCart("6")
-        addProductToCart("7")
-        addProductToCart("8")
-        addProductToCart("9")
-        addProductToCart("10")
-        addProductToCart("11")
+        //addProductToCart("2")
+        //addProductToCart("3")
+        //addProductToCart("4")
+        //addProductToCart("5")
+        //addProductToCart("6")
+        //addProductToCart("7")
+        //addProductToCart("8")
+        //addProductToCart("9")
+        //addProductToCart("10")
+        //addProductToCart("11")
     }
 
     fun initializeMapWithShops() {
