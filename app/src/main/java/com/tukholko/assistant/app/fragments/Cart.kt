@@ -7,25 +7,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.RecyclerAdapter
+import java.math.BigDecimal
 
 
+@Suppress("UNREACHABLE_CODE")
 class Cart : Fragment() {
     var text: TextView? = null
     var button: Button? = null
     var counter: Int = 0
 
     var recyclerView : RecyclerView? = null
-    var emptyCartView : TextView? = null
+    var emptyCartView : LinearLayout? = null
     var adapter : RecyclerAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_left, container, false)
+        return inflater.inflate(R.layout.fragment_cart, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +60,13 @@ class Cart : Fragment() {
         recyclerView?.adapter = adapter
 
         adapter!!.setTotalPriceView(totalPriceView)
+        view.findViewById<Button>(R.id.payment_button).setOnClickListener {
+            payment(totalPriceView)
+        }
+    }
 
+    private fun payment(price: View) {
+        TODO("Not yet implemented")
     }
 
     override fun onStart() {

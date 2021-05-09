@@ -53,14 +53,14 @@ class Profile : Fragment() {
                 .userAPI
                 .getUserByEmail(email).enqueue(object : Callback<User> {
                     override fun onResponse(call: Call<User>, response: Response<User>) {
-                        Log.i(TAG, "user is wrote into db")
                         user = response.body() as User
+                        Log.i(TAG, "user from db: $user")
                         fillProfile(user)
                     }
 
                     override fun onFailure(call: Call<User>, t: Throwable) {
-                        Log.i(TAG, "user is not wrote into db")
                         user = User(email, "", "")
+                        Log.e(TAG, "user read error")
                     }
                 })
     }
