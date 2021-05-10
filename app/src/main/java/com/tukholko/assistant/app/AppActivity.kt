@@ -2,25 +2,28 @@ package com.tukholko.assistant.app
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.integration.android.IntentIntegrator
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.fragments.Cart
 import com.tukholko.assistant.app.fragments.Profile
 import com.tukholko.assistant.app.fragments.Right
+import com.tukholko.assistant.app.fragments.dialog.NewProductAlertDialog
+import com.tukholko.assistant.app.fragments.dialog.NoProductAlertDialog
+import com.tukholko.assistant.app.fragments.dialog.ShopNotSelectedDialog
 import com.tukholko.assistant.app.service.NetworkService
 import com.tukholko.assistant.app.service.barcode.Capture
 import com.tukholko.assistant.auth.LoginActivity
@@ -36,6 +39,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AppActivity : AppCompatActivity() {
+    val TAG: String = "APP_ACTIVITY"
     // Fragment-related variables
     private val cartFragment = Cart()
     private val profileFragment = Profile()
@@ -55,7 +59,6 @@ class AppActivity : AppCompatActivity() {
 
     private var btScan: TextView? = null
 
-    lateinit var toolbar: ActionBar
 
     private var selectedShop : Int? = null
 
@@ -68,27 +71,54 @@ class AppActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         val intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (intentResult.contents != null) {
-            Toast.makeText(
-                    applicationContext,
-                    intentResult.contents,
-                    Toast.LENGTH_SHORT
-            ).show()
-            addProductToCart(intentResult.contents)
+            var product: Product
+            NetworkService.getInstance()
+                    .productAPI
+                    .getProductWithID(selectedShop!!, intentResult.contents).enqueue(object : Callback<Product> {
+                        override fun onResponse(call: Call<Product>, response: Response<Product>) {
+                            if (response.code().equals(500)) {
+                                onReadError()
+                            } else {
+                                product = response.body() as Product
+                                Log.i(TAG, "product read from db: $product")
+                                val fm = this@AppActivity.supportFragmentManager
+                                val newProductAlertDialog = NewProductAlertDialog(product)
+                                newProductAlertDialog.show(fm, "new_product_dialog")
+                            }
+                        }
+
+                        override fun onFailure(call: Call<Product>, t: Throwable) {
+                            onReadError()
+                        }
+                    })
         }
     }
 
-    fun addProductToCart(productData : String) {
-        cartFragment.adapter?.addProduct(Product(productData, 1.1, "Belarus", "This is a soup!", 2.4))
+    private fun onReadError() {
+        Log.e(TAG, "product not found")
+        val fm = this@AppActivity.supportFragmentManager
+        val noProductAlertDialog = NoProductAlertDialog()
+        noProductAlertDialog.show(fm, "no_product_alert_dialog")
+    }
+
+    fun addProductToCart(product: Product) {
+        cartFragment.adapter?.addProduct(product)
     }
 
     private fun initializeScanButton() {
         btScan = findViewById<TextView>(R.id.button_scan)
         btScan!!.setOnClickListener(View.OnClickListener {
-            addProductToCart("2")
-            val intentIntegrator = IntentIntegrator(this@AppActivity)
-            intentIntegrator.setOrientationLocked(true)
-            intentIntegrator.captureActivity = Capture::class.java
-            intentIntegrator.initiateScan()
+            if (selectedShop != null) {
+                findViewById<BottomNavigationItemView>(R.id.navigation_left).callOnClick()
+                val intentIntegrator = IntentIntegrator(this@AppActivity)
+                intentIntegrator.setOrientationLocked(true)
+                intentIntegrator.captureActivity = Capture::class.java
+                intentIntegrator.initiateScan()
+            } else {
+                val fm = this@AppActivity.supportFragmentManager
+                val shopNotSelectedDialog = ShopNotSelectedDialog()
+                shopNotSelectedDialog.show(fm, "shop_not_selected_dialog")
+            }
         })
     }
 
@@ -187,17 +217,17 @@ class AppActivity : AppCompatActivity() {
             R.id.navigation_left -> {
                 fragmentManager.beginTransaction().hide(activeFragment).show(cartFragment).commit()
                 activeFragment = cartFragment
-                return@OnNavigationItemSelectedListener true;
+                return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_central -> {
                 fragmentManager.beginTransaction().hide(activeFragment).show(profileFragment).commit()
                 activeFragment = profileFragment
-                return@OnNavigationItemSelectedListener true;
+                return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_map -> {
                 fragmentManager.beginTransaction().hide(activeFragment).show(mapFragment).commit()
                 if (mapFirstTimeInit) {
-                    mapView = findViewById<MapView>(R.id.map_view)
+                    mapView = findViewById(R.id.map_view)
                     mapView!!.map.move(cameraTarget)
                     mapObjects = mapView!!.map.mapObjects.addCollection()
                     initializeMapWithShops()
@@ -208,7 +238,7 @@ class AppActivity : AppCompatActivity() {
                     mapRestart = false
                 }
                 activeFragment = mapFragment
-                return@OnNavigationItemSelectedListener true;
+                return@OnNavigationItemSelectedListener true
             }
         }
         false

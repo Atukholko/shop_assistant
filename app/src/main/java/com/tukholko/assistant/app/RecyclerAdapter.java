@@ -1,10 +1,13 @@
 package com.tukholko.assistant.app;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -136,9 +139,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public void onPositive() {
             totalPrice -= products.get(productIndex).product.getPrice();
             updateTotalPrice();
-            products.remove(productIndex.intValue());
-            notifyItemRemoved(productIndex);
-            notifyDataSetChanged();
+            deleteItem(itemView, productIndex.intValue());
+//            products.remove(productIndex.intValue());
+//            notifyItemRemoved(productIndex);
+//            notifyDataSetChanged();
+        }
+
+        private void deleteItem(View rowView, final int position) {
+
+            Animation anim = AnimationUtils.loadAnimation(context,
+                    android.R.anim.slide_out_right);
+            anim.setDuration(300);
+            rowView.startAnimation(anim);
+
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    products.remove(position);
+                    notifyItemRemoved(productIndex);
+                    notifyDataSetChanged();
+                }
+            }, anim.getDuration());
         }
 
         private boolean getDialogAnswer(Context context) {
@@ -151,7 +171,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             DeleteCartItemDialog deleteCartItemDialog = new DeleteCartItemDialog();
             deleteCartItemDialog.setViewHolder(this);
             deleteCartItemDialog.show(fm, "fff");
-            //Log.e("GGGGGGshowDeleteDialog", ""+deleteCartItemDialog.getAnswer());
             return deleteCartItemDialog;
         }
     }

@@ -30,4 +30,8 @@
     <string name="no">нет</string>
     <string name="delete_cart_item_headline">Удалить Товар</string>
     <string name="delete_cart_item_text">Вы действительно хотите удалить этот продукт?</string>
+    <string name="sorry_message">Извините</string>
+    <string name="product_not_found">Продукт не найден</string>
+    <string name="shop_not_selected_headline">Магазин не выбран</string>
+    <string name="shop_not_selected_text">Давайте выберем?</string>
 </resources>
