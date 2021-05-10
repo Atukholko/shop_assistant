@@ -9,4 +9,7 @@
                 android:width="70dp" />
         </shape>
     </item>
+    <item android:drawable="@drawable/ic_shop_not_selected"
+        android:gravity="center">
+    </item>
 </layer-list>

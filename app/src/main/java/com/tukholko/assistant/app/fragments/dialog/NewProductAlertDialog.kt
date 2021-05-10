@@ -44,7 +44,7 @@ class NewProductAlertDialog(var product: Product): DialogFragment() {
     override fun onStart() {
         super.onStart()
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
-        val height = (resources.displayMetrics.heightPixels * 0.80).toInt()
+        val height = (resources.displayMetrics.heightPixels * 0.60).toInt()
         dialog!!.window?.setLayout(width, height)
     }
 
