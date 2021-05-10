@@ -75,7 +75,6 @@ class LoginActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     updateUI(user)
                     progressBar.visibility = ProgressBar.INVISIBLE
-                    findViewById<Button>(R.id.signInButton).isClickable = true
                 }
                 .addOnFailureListener {
                     Log.e(TAG, "signInUserWithEmail:failure(Не существует такой учетной записи)")
