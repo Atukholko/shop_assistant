@@ -10,8 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.tukholko.assistant.R
-import com.tukholko.assistant.app.AppActivity
-import com.tukholko.assistant.app.fragments.dialog.LogoutDialog
+import com.tukholko.assistant.app.fragments.dialog.LogoutAlertDialog
 import com.tukholko.assistant.app.service.NetworkService
 import com.tukholko.assistant.model.User
 import retrofit2.Call
@@ -68,7 +67,7 @@ class Profile : Fragment() {
 
 
     private fun logout() {
-        fragmentManager?.let { LogoutDialog().show(it, "MyCustomFragment") }
+        fragmentManager?.let { LogoutAlertDialog().show(it, "MyCustomFragment") }
     }
 
     companion object {

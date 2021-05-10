@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tukholko.assistant.R;
-import com.tukholko.assistant.app.fragments.dialog.DeleteCartItemDialog;
+import com.tukholko.assistant.app.fragments.dialog.DeleteCartItemAlertDialog;
 import com.tukholko.assistant.model.Product;
 
 import java.text.DecimalFormat;
@@ -165,13 +165,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             return showDeleteDialog(context).getAnswer();
         }
 
-        private DeleteCartItemDialog showDeleteDialog(Context context) {
+        private DeleteCartItemAlertDialog showDeleteDialog(Context context) {
             AppActivity activity = (AppActivity) context;
             FragmentManager fm = activity.getSupportFragmentManager();
-            DeleteCartItemDialog deleteCartItemDialog = new DeleteCartItemDialog();
+            DeleteCartItemAlertDialog deleteCartItemDialog = new DeleteCartItemAlertDialog();
             deleteCartItemDialog.setViewHolder(this);
             deleteCartItemDialog.show(fm, "fff");
             return deleteCartItemDialog;
         }
+    }
+
+    public void deleteAll() {
+        products.clear();
+        notifyDataSetChanged();
     }
 }

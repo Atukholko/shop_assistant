@@ -20,10 +20,10 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.fragments.Cart
 import com.tukholko.assistant.app.fragments.Profile
-import com.tukholko.assistant.app.fragments.Right
+import com.tukholko.assistant.app.fragments.Map
 import com.tukholko.assistant.app.fragments.dialog.NewProductAlertDialog
 import com.tukholko.assistant.app.fragments.dialog.NoProductAlertDialog
-import com.tukholko.assistant.app.fragments.dialog.ShopNotSelectedDialog
+import com.tukholko.assistant.app.fragments.dialog.ShopNotSelectedAlertDialog
 import com.tukholko.assistant.app.service.NetworkService
 import com.tukholko.assistant.app.service.barcode.Capture
 import com.tukholko.assistant.auth.LoginActivity
@@ -43,7 +43,7 @@ class AppActivity : AppCompatActivity() {
     // Fragment-related variables
     private val cartFragment = Cart()
     private val profileFragment = Profile()
-    private val mapFragment = Right()
+    private val mapFragment = Map()
     private val fragmentManager = supportFragmentManager
     private var activeFragment: Fragment = cartFragment
 
@@ -109,14 +109,14 @@ class AppActivity : AppCompatActivity() {
         btScan = findViewById<TextView>(R.id.button_scan)
         btScan!!.setOnClickListener(View.OnClickListener {
             if (selectedShop != null) {
-                findViewById<BottomNavigationItemView>(R.id.navigation_left).callOnClick()
+                findViewById<BottomNavigationItemView>(R.id.navigation_cart).callOnClick()
                 val intentIntegrator = IntentIntegrator(this@AppActivity)
                 intentIntegrator.setOrientationLocked(true)
                 intentIntegrator.captureActivity = Capture::class.java
                 intentIntegrator.initiateScan()
             } else {
                 val fm = this@AppActivity.supportFragmentManager
-                val shopNotSelectedDialog = ShopNotSelectedDialog()
+                val shopNotSelectedDialog = ShopNotSelectedAlertDialog()
                 shopNotSelectedDialog.show(fm, "shop_not_selected_dialog")
             }
         })
@@ -214,12 +214,12 @@ class AppActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_left -> {
+            R.id.navigation_cart -> {
                 fragmentManager.beginTransaction().hide(activeFragment).show(cartFragment).commit()
                 activeFragment = cartFragment
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_central -> {
+            R.id.navigation_profile -> {
                 fragmentManager.beginTransaction().hide(activeFragment).show(profileFragment).commit()
                 activeFragment = profileFragment
                 return@OnNavigationItemSelectedListener true

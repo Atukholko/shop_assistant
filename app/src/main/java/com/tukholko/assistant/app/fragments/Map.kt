@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.AppActivity
 
-class Right : Fragment() {
+class Map : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_map, container, false)
@@ -24,6 +24,6 @@ class Right : Fragment() {
     }
 
     companion object {
-        fun newInstance(): Right = Right()
+        fun newInstance(): Map = Map()
     }
 }

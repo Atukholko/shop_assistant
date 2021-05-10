@@ -34,4 +34,6 @@
     <string name="product_not_found">Продукт не найден</string>
     <string name="shop_not_selected_headline">Магазин не выбран</string>
     <string name="shop_not_selected_text">Давайте выберем?</string>
+    <string name="payment_success">Оплата Совершена</string>
+    <string name="payment_success_text">Спасибо за покупку!</string>
 </resources>

@@ -13,8 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tukholko.assistant.R
+import com.tukholko.assistant.app.AppActivity
 import com.tukholko.assistant.app.RecyclerAdapter
-import java.math.BigDecimal
+import com.tukholko.assistant.app.fragments.dialog.PaymentSuccessedAlertDialog
 
 
 @Suppress("UNREACHABLE_CODE")
@@ -35,6 +36,8 @@ class Cart : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         emptyCartView = view.findViewById(R.id.cart_empty)
         var totalPriceView: TextView = view.findViewById(R.id.total_price)
+        var activity = activity as AppActivity
+        var paymentButton = activity.findViewById<Button>(R.id.payment_button)
         totalPriceView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int,
@@ -46,9 +49,11 @@ class Cart : Fragment() {
                 if (s.toString().equals("0")) {
                     recyclerView?.visibility = View.GONE
                     emptyCartView?.visibility = View.VISIBLE
+                    paymentButton.isClickable = false
                 } else {
                     recyclerView?.visibility = View.VISIBLE
                     emptyCartView?.visibility = View.GONE
+                    paymentButton.isClickable = true
                 }
 
             }
@@ -66,7 +71,8 @@ class Cart : Fragment() {
     }
 
     private fun payment(price: View) {
-        TODO("Not yet implemented")
+        fragmentManager?.let { PaymentSuccessedAlertDialog().show(it, "MyCustomFragment") }
+        adapter?.deleteAll()
     }
 
     override fun onStart() {

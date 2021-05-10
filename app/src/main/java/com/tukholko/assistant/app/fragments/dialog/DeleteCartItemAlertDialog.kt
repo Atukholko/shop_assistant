@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.RecyclerAdapter
 
-class DeleteCartItemDialog: DialogFragment() {
+class DeleteCartItemAlertDialog: DialogFragment() {
     var answer: Boolean = false
     var viewHolder : RecyclerAdapter.ViewHolder? = null
 
