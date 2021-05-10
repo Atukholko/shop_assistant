@@ -127,18 +127,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                         Log.e("GGGGGGGGGGGGGGGG", "ddd");
                     } else {
                         Log.e("ggg", products.get(productIndex).product.getName());
-                        if (getDialogAnswer(context)) {
-                            products.remove(productIndex.intValue());
-                            notifyItemRemoved(productIndex);
-                            notifyDataSetChanged();
-                        }
+                        showDeleteDialog(context);
                     }
                 }
             });
         }
 
+        public void onPositive() {
+            totalPrice -= products.get(productIndex).product.getPrice();
+            updateTotalPrice();
+            products.remove(productIndex.intValue());
+            notifyItemRemoved(productIndex);
+            notifyDataSetChanged();
+        }
+
         private boolean getDialogAnswer(Context context) {
-            Log.e("GGGGGGGGgetDialogAnswer", ""+showDeleteDialog(context).getAnswer());
             return showDeleteDialog(context).getAnswer();
         }
 
@@ -146,8 +149,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             AppActivity activity = (AppActivity) context;
             FragmentManager fm = activity.getSupportFragmentManager();
             DeleteCartItemDialog deleteCartItemDialog = new DeleteCartItemDialog();
+            deleteCartItemDialog.setViewHolder(this);
             deleteCartItemDialog.show(fm, "fff");
-            Log.e("GGGGGGshowDeleteDialog", ""+deleteCartItemDialog.getAnswer());
+            //Log.e("GGGGGGshowDeleteDialog", ""+deleteCartItemDialog.getAnswer());
             return deleteCartItemDialog;
         }
     }
