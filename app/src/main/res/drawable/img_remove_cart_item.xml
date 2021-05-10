@@ -3,13 +3,13 @@
     <item>
         <shape android:shape="oval">
             <solid
-                android:color="@color/green_700" />
+                android:color="@color/green_700"/>
             <size
                 android:height="70dp"
                 android:width="70dp" />
         </shape>
     </item>
-    <item android:drawable="@drawable/logout_icon"
+    <item android:drawable="@drawable/ic_remove_cart_item"
         android:height="30dp"
         android:width="30dp"
         android:gravity="center">

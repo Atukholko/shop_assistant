@@ -19,44 +19,44 @@
         android:layout_marginTop="30dp">
 
         <ImageView
-            android:id="@+id/dialog_logout_image"
+            android:id="@+id/dialog_remove_cart_item_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/img_logout"
+            android:background="@drawable/img_remove_cart_item"
             android:maxWidth="30dp"
-            android:maxHeight="30dp" />
+            android:maxHeight="30dp"/>
 
         <TextView
-            android:id="@+id/dialog_logout_headline"
+            android:id="@+id/dialog_remove_cart_item_headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/logout"
+            android:text="@string/delete_cart_item_headline"
             android:textAlignment="center"
             android:textColor="@color/dark_blue"
-            android:textSize="22sp" />
+            android:textSize="22sp"/>
 
         <TextView
-            android:id="@+id/dialog_logout_text"
+            android:id="@+id/dialog_remove_cart_item_text"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@string/logout_text"
+            android:text="@string/delete_cart_item_text"
             android:textAlignment="center"
             android:textColor="@color/gray_700"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
 
     </LinearLayout>
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/dialog_remove_cart_item_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray_700"
-        app:layout_constraintBottom_toTopOf="@id/dialog_logout_no_button"/>
+        app:layout_constraintBottom_toTopOf="@id/dialog_remove_cart_item_no_button"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/dialog_logout_yes_button"
+        android:id="@+id/dialog_remove_cart_item_yes_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/dialog_buttons"
@@ -66,10 +66,10 @@
         android:textColor="@color/dark_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/dialog_logout_button_divider"/>
+        app:layout_constraintEnd_toStartOf="@id/dialog_remove_cart_item_button_divider"/>
 
     <View
-        android:id="@+id/dialog_logout_button_divider"
+        android:id="@+id/dialog_remove_cart_item_button_divider"
         android:layout_width="1dp"
         android:layout_height="30dp"
         android:background="@color/gray_700"
@@ -79,7 +79,7 @@
         android:layout_marginBottom="10dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/dialog_logout_no_button"
+        android:id="@+id/dialog_remove_cart_item_no_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/dialog_buttons"
@@ -89,7 +89,7 @@
         android:textColor="@color/dark_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/dialog_logout_button_divider"
+        app:layout_constraintStart_toEndOf="@id/dialog_remove_cart_item_button_divider"
         style="?android:attr/borderlessButtonStyle"/>
 
 

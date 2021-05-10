@@ -1,19 +1,26 @@
 package com.tukholko.assistant.app;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.dynamic.SupportFragmentWrapper;
 import com.tukholko.assistant.R;
+import com.tukholko.assistant.app.fragments.Cart;
+import com.tukholko.assistant.app.fragments.dialog.DeleteCartItemDialog;
 import com.tukholko.assistant.model.Product;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     Context context;
@@ -117,19 +124,57 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             itemView.findViewById(R.id.decrease_product_quantity_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    totalPrice -= products.get(productIndex).product.getPrice();
-                    updateTotalPrice();
                     if(products.get(productIndex).count > 1) {
+                        totalPrice -= products.get(productIndex).product.getPrice();
+                        updateTotalPrice();
                         products.get(productIndex).count--;
                         notifyItemChanged(productIndex);
                     } else {
-
-                        products.remove(productIndex.intValue());
-                        notifyItemRemoved(productIndex);
-                        notifyDataSetChanged();
+                        Log.e("ggg", products.get(productIndex).product.getName());
+                        showDeleteDialog(context);
+//                        products.remove(productIndex.intValue());
+//                        notifyItemRemoved(productIndex);
+//                        notifyDataSetChanged();
                     }
                 }
             });
+        }
+        private void showDeleteDialog(Context context) {
+            AppActivity activity = (AppActivity)context;
+            FragmentManager fm = activity.getSupportFragmentManager();
+            DeleteCartItemDialog deleteCartItemDialog = new DeleteCartItemDialog();
+            deleteCartItemDialog.show(fm, "fff");
+            //-------------------------
+//            Dialog visitorDialog = new Dialog(context);
+//            visitorDialog.setCanceledOnTouchOutside(true);
+//
+//            visitorDialog.setContentView(R.layout.dialog_delete_cart_item);
+//            visitorDialog.findViewById(R.id.dialog_remove_cart_item_no_button)
+//                    .setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            products.remove(productIndex.intValue());
+//                            notifyItemRemoved(productIndex);
+//                            notifyDataSetChanged();
+//                        }
+//                    });
+//            visitorDialog.show();
+            //---------------------------------
+//            AppActivity activity = (AppActivity)context;
+//            FragmentManager manager = activity.getSupportFragmentManager();
+//            DeleteCartItemDialog deleteDialog = new DeleteCartItemDialog();
+//            deleteDialog.show(manager, "Delete cart item Dialog");
+//            deleteDialog
+//                    .getView()
+//                    .findViewById(R.id.dialog_remove_cart_item_yes_button)
+//                    .setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            products.remove(productIndex.intValue());
+//                            notifyItemRemoved(productIndex);
+//                            notifyDataSetChanged();
+//                        }
+//                    });
         }
     }
 }

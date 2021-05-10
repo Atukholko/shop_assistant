@@ -28,4 +28,6 @@
     <string name="logout_text">Вы действительно хотите выйти?</string>
     <string name="yes">Да</string>
     <string name="no">нет</string>
+    <string name="delete_cart_item_headline">Удалить Товар</string>
+    <string name="delete_cart_item_text">Вы действительно хотите удалить этот продукт?</string>
 </resources>
