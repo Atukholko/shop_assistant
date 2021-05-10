@@ -34,6 +34,7 @@ class NewProductAlertDialog(var product: Product): DialogFragment() {
         view.findViewById<Button>(R.id.dialog_new_product_yes_button).setOnClickListener {
             var activity = activity as AppActivity
             activity.addProductToCart(product)
+            this.dismiss()
         }
         view.findViewById<Button>(R.id.dialog_new_product_no_button).setOnClickListener {
             this.dismiss()
