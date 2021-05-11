@@ -17,6 +17,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.integration.android.IntentIntegrator
+import com.makeramen.roundedimageview.RoundedImageView
+import com.squareup.picasso.Picasso
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.fragments.Cart
 import com.tukholko.assistant.app.fragments.Profile
@@ -134,6 +136,11 @@ class AppActivity : AppCompatActivity() {
                 bottomSheetDialog.findViewById<TextView>(R.id.shop_name)?.text = (mapObject.userData as HashMap<*, *>)["Shop name"].toString()
                 bottomSheetDialog.findViewById<TextView>(R.id.shop_city_and_country)?.text = (mapObject.userData as HashMap<*, *>)["Shop country and city"].toString()
                 bottomSheetDialog.findViewById<TextView>(R.id.shop_address)?.text = (mapObject.userData as HashMap<*, *>)["Shop address"].toString()
+                //bottomSheetDialog.findViewById<RoundedImageView>(R.id.shop_image)?
+                var imagePath = (mapObject.userData as HashMap<*, *>)["Image"].toString();
+                if(!imagePath.isEmpty()) {
+                    Picasso.get().load(imagePath).error(R.drawable.ic_shop).into(bottomSheetDialog.findViewById<RoundedImageView>(R.id.shop_image))
+                }
                 bottomSheetDialog.findViewById<Button>(R.id.button_select_shop)?.setOnClickListener {
                     selectedShop = (mapObject.userData as HashMap<*, *>)["Local ID"].toString().toInt()
                     bottomSheetDialog.dismiss();
@@ -159,16 +166,6 @@ class AppActivity : AppCompatActivity() {
             add(R.id.container, profileFragment, "PROFILE FRAGMENT").hide(profileFragment)
         }.commit()
 
-        //addProductToCart("2")
-        //addProductToCart("3")
-        //addProductToCart("4")
-        //addProductToCart("5")
-        //addProductToCart("6")
-        //addProductToCart("7")
-        //addProductToCart("8")
-        //addProductToCart("9")
-        //addProductToCart("10")
-        //addProductToCart("11")
     }
 
     fun initializeMapWithShops() {
@@ -208,6 +205,11 @@ class AppActivity : AppCompatActivity() {
             userDataMap["Shop name"] = shopPoint.localShopName
             userDataMap["Shop country and city"] = shopPoint.country + ", " + shopPoint.city
             userDataMap["Shop address"] = shopPoint.address
+            if(shopPoint.image == null) {
+                userDataMap["Image"] = ""
+            } else {
+                userDataMap["Image"] = shopPoint.image!!
+            }
             mark.userData = userDataMap
         }
     }

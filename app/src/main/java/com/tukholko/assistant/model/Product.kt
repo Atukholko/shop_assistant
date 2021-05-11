@@ -12,5 +12,7 @@ data class Product(
         @SerializedName("Product_description")
         var description: String,
         @SerializedName("Product_price")
-        var price: Double
+        var price: Double,
+        @SerializedName("Product_image")
+        var image: String?
 )

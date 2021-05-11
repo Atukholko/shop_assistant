@@ -52,7 +52,8 @@
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="@color/dark_blue"/>
+                android:textColor="@color/dark_blue"
+                android:singleLine="true"/>
 
                 <TextView
                     android:id="@+id/product_weight"

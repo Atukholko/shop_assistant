@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.makeramen.roundedimageview.RoundedImageView;
+import com.squareup.picasso.Picasso;
 import com.tukholko.assistant.R;
 import com.tukholko.assistant.app.fragments.dialog.DeleteCartItemAlertDialog;
 import com.tukholko.assistant.model.Product;
@@ -72,6 +74,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.productPrice.setText(product.getPrice() + " BYN");
         holder.productQuantity.setText(products.get(position).count.toString());
         holder.productIndex = position;
+
+        if(product.getImage() != null) {
+            Picasso.get().load(product.getImage()).error(R.drawable.ic_shop).into(holder.productImage);
+        }
     }
 
     @Override
@@ -95,6 +101,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView productManufacturer;
         TextView productPrice;
         TextView productQuantity;
+        RoundedImageView productImage;
         Integer productIndex;
 
         public ViewHolder(@NonNull View itemView) {
@@ -104,6 +111,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             productManufacturer = itemView.findViewById(R.id.product_manufacturer);
             productPrice = itemView.findViewById(R.id.product_price);
             productQuantity = itemView.findViewById(R.id.product_quantity);
+            productImage = itemView.findViewById(R.id.product_img);
 
             initializeListeners(itemView);
         }
@@ -178,5 +186,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void deleteAll() {
         products.clear();
         notifyDataSetChanged();
+        totalPrice = (double) 0;
+        updateTotalPrice();
     }
 }

@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import com.makeramen.roundedimageview.RoundedImageView
+import com.squareup.picasso.Picasso
 import com.tukholko.assistant.R
 import com.tukholko.assistant.app.AppActivity
 import com.tukholko.assistant.model.Product
@@ -30,6 +32,10 @@ class NewProductAlertDialog(var product: Product): DialogFragment() {
         prodName.text = product.name
         prodManufacturer.text = product.manufacturer
         prodPrice.text = product.price.toString()
+
+        if(product.image != null) {
+            Picasso.get().load(product.image).error(R.drawable.ic_shop).into(prodImage)
+        }
 
         view.findViewById<Button>(R.id.dialog_new_product_yes_button).setOnClickListener {
             var activity = activity as AppActivity

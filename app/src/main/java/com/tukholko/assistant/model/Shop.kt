@@ -16,5 +16,7 @@ data class Shop(
         @SerializedName("Latitude")
         var latitude: Double,
         @SerializedName("Longitude")
-        var longitude: Double
+        var longitude: Double,
+        @SerializedName("Shop_image")
+        var image: String?
 )
