@@ -30,17 +30,15 @@
                     android:layout_height="100dp"
                     android:padding="10dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/morgen"
+                    android:src="@drawable/ic_dairy_products__v2"
                     app:riv_corner_radius="5dp"
-                    app:riv_border_width="1dp"
                     app:riv_border_color="@color/dark_blue"/>
-
             </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/product_info"
                 android:orientation="vertical"
-                android:layout_width="190dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/image_frame"
                 >
@@ -53,15 +51,15 @@
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="@color/dark_blue"/>
+                android:textColor="@color/dark_blue"
+                android:singleLine="true"/>
 
                 <TextView
                     android:id="@+id/product_weight"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="3dp"
                     android:text="@string/sample_product_weight"
-                    android:textColor="@color/gray_700"
-                    />
+                    android:textColor="@color/gray_700" />
 
                 <TextView
                     android:id="@+id/product_manufacturer"
@@ -107,12 +105,12 @@
                     android:gravity="center"
                     app:strokeColor="@color/green_700"
                     app:strokeWidth="1dp"
-                    app:iconPadding="0dp"/>
+                    app:iconPadding="0dp" />
 
 
                 <TextView
                     android:id="@+id/product_quantity"
-                    android:layout_width="wrap_content"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:text="@string/product_quantity"
                     android:textSize="15sp"
@@ -120,7 +118,8 @@
                     android:textColor="@color/dark_blue"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:singleLine="true"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/increase_product_quantity_button"
@@ -135,7 +134,7 @@
                     app:icon="@drawable/add_cart"
                     app:iconGravity="textStart"
                     android:gravity="center"
-                    app:iconPadding="0dp"/>
+                    app:iconPadding="0dp" />
 
             </LinearLayout>
 

@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.tukholko.assistant.R
-import com.tukholko.assistant.app.AppActivity
+import com.tukholko.assistant.app.fragments.dialog.LogoutAlertDialog
 import com.tukholko.assistant.app.service.NetworkService
 import com.tukholko.assistant.model.User
 import retrofit2.Call
@@ -37,7 +37,7 @@ class Profile : Fragment() {
         secondName = view.findViewById(R.id.profileSecondName)
 
         view.findViewById<Button>(R.id.signOut).setOnClickListener {
-            (activity as AppActivity?)!!.signOut()
+            logout()
         }
         super.onViewCreated(view, savedInstanceState)
     }
@@ -53,16 +53,21 @@ class Profile : Fragment() {
                 .userAPI
                 .getUserByEmail(email).enqueue(object : Callback<User> {
                     override fun onResponse(call: Call<User>, response: Response<User>) {
-                        Log.i(TAG, "user is wrote into db")
                         user = response.body() as User
+                        Log.i(TAG, "user from db: $user")
                         fillProfile(user)
                     }
 
                     override fun onFailure(call: Call<User>, t: Throwable) {
-                        Log.i(TAG, "user is not wrote into db")
                         user = User(email, "", "")
+                        Log.e(TAG, "user read error")
                     }
                 })
+    }
+
+
+    private fun logout() {
+        fragmentManager?.let { LogoutAlertDialog().show(it, "LogoutDialog") }
     }
 
     companion object {

@@ -22,5 +22,18 @@
     <string name="payment_button_text">Оплатить</string>
     <string name="price_currency_text">BYN</string>
     <string name="total_price">0</string>
-    <string name="empty_cart_message">Cart is empty</string>
+    <string name="empty_cart_text">Воспользуйтесь сканером штрихкодов для ее пополнения</string>
+    <string name="empty_cart_headline">Ваша Корзина Пуста</string>
+    <string name="logout">Выход</string>
+    <string name="logout_text">Вы действительно хотите выйти?</string>
+    <string name="yes">Да</string>
+    <string name="no">нет</string>
+    <string name="delete_cart_item_headline">Удалить Товар</string>
+    <string name="delete_cart_item_text">Вы действительно хотите удалить этот продукт?</string>
+    <string name="sorry_message">Извините</string>
+    <string name="product_not_found">Продукт не найден</string>
+    <string name="shop_not_selected_headline">Магазин не выбран</string>
+    <string name="shop_not_selected_text">Давайте выберем?</string>
+    <string name="payment_success">Оплата Совершена</string>
+    <string name="payment_success_text">Спасибо за покупку!</string>
 </resources>
