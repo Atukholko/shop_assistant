@@ -71,7 +71,7 @@ class Cart : Fragment() {
     }
 
     private fun payment(price: View) {
-        fragmentManager?.let { PaymentSuccessedAlertDialog().show(it, "MyCustomFragment") }
+        fragmentManager?.let { PaymentSuccessedAlertDialog().show(it, "PaymentDialog") }
         adapter?.deleteAll()
     }
 

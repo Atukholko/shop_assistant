@@ -67,7 +67,7 @@ class Profile : Fragment() {
 
 
     private fun logout() {
-        fragmentManager?.let { LogoutAlertDialog().show(it, "MyCustomFragment") }
+        fragmentManager?.let { LogoutAlertDialog().show(it, "LogoutDialog") }
     }
 
     companion object {
