@@ -4,9 +4,9 @@
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="register">Зарегистрироваться</string>
-    <string name="email">email</string>
+    <string name="email">Почта</string>
     <string name="registration">Регистрация</string>
-    <string name="password">password</string>
+    <string name="password">Пароль</string>
     <string name="singIn">Вход</string>
     <string name="logIn">войти</string>
     <string name="sample_product_name">Sample product name</string>
