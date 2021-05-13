@@ -38,6 +38,10 @@ class Cart : Fragment() {
         var totalPriceView: TextView = view.findViewById(R.id.total_price)
         var activity = activity as AppActivity
         var paymentButton = activity.findViewById<Button>(R.id.payment_button)
+        paymentButton.isClickable = false
+        paymentButton.setOnClickListener {
+            payment(totalPriceView)
+        }
         totalPriceView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int,
@@ -65,14 +69,13 @@ class Cart : Fragment() {
         recyclerView?.adapter = adapter
 
         adapter!!.setTotalPriceView(totalPriceView)
-        view.findViewById<Button>(R.id.payment_button).setOnClickListener {
-            payment(totalPriceView)
-        }
     }
 
-    private fun payment(price: View) {
-        fragmentManager?.let { PaymentSuccessedAlertDialog().show(it, "PaymentDialog") }
-        adapter?.deleteAll()
+    private fun payment(price: TextView) {
+        if (!price.text.toString().equals("0")){
+            fragmentManager?.let { PaymentSuccessedAlertDialog().show(it, "PaymentDialog") }
+            adapter?.deleteAll()
+        }
     }
 
     override fun onStart() {
